@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramienta de Cifrado - Ciberseguridad</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <h1>Sistema de Cifrado y Criptoanálisis</h1>
+
+        <section id="seccion-cifrar">
+            <h2>Cifrar Mensaje</h2>
+
+            <label for="tipo-cifrado">1. Selecciona el tipo de cifrado:</label>
+            <select id="tipo-cifrado">
+                <option value="cesar">Cifrado César</option>
+                <option value="atbash">Cifrado Atbash</option>
+            </select>
+
+            <div id="contenedor-desplazamiento">
+                <label for="desplazamiento">Clave (Desplazamiento para César):</label>
+                <input type="number" id="desplazamiento" min="1" max="25" value="3">
+            </div>
+
+            <label for="texto-cifrar">2. Escribe el texto a cifrar:</label>
+            <textarea id="texto-cifrar" rows="4" placeholder="Escribe tu mensaje aquí..."></textarea>
+
+            <button id="btn-cifrar">Cifrar</button>
+
+            <div class="resultado">
+                <h3>Resultado:</h3>
+                <p id="salida-cifrado">Aquí aparecerá el texto cifrado.</p>
+            </div>
+        </section>
+
+        <hr>
+        <section id="seccion-descifrar">
+            <h2>Descifrar / Identificar Mensaje</h2>
+
+            <label for="texto-descifrar">1. Escribe el texto cifrado:</label>
+            <textarea id="texto-descifrar" rows="4" placeholder="Ingresa el código secreto..."></textarea>
+
+            <button id="btn-descifrar">Analizar y Descifrar</button>
+
+            <div class="resultado">
+                <h3>Posibles Resultados:</h3>
+                <div id="salida-descifrado">
+                    <p>Esperando texto para analizar...</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

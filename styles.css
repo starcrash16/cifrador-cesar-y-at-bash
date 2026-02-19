@@ -1,0 +1,159 @@
+/* =========================================
+   1. ESTILOS BASE Y RESETEO
+   ========================================= */
+
+/* El asterisco (*) aplica a TODOS los elementos de la página */
+* {
+    /* box-sizing: border-box hace que el 'padding' y el 'border' se incluyan 
+       en el ancho total del elemento. Evita que las cosas se desborden. */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*Fuente sin patines*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*Color de fondo*/
+    background-color: #f4f7f6;
+    /*Color de texto*/
+    color: #333;
+    /*Alineación del texto*/
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* =========================================
+   2. CONTENEDOR PRINCIPAL (MAIN)
+   ========================================= */
+
+main {
+    /* Ancho máximo del contenido */
+    max-width: 800px;
+    /* Margen automático a los lados para centrarlo */
+    margin: 0 auto;
+    /* Fondo blanco */
+    background-color: #fff;
+    /* Sombra suave para que resalte */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Bordes redondeados */
+    border-radius: 10px;
+    /* Relleno interno */
+    padding: 30px;
+}
+
+/* =========================================
+   3. TÍTULOS
+   ========================================= */
+
+h1 {
+    /* Color */
+    color: #2c3e50;
+    /* Margen inferior */
+    margin-bottom: 20px;
+    /* Tamaño de fuente */
+    font-size: 2.5em;
+    /* Sombra de texto para dar profundidad */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    /* Color */
+    color: #34495e;
+    /* Separación del título */
+    margin-top: 30px;
+    margin-bottom: 15px;
+    /* Tamaño de fuente */
+    font-size: 1.8em;
+    /* Línea decorativa debajo del título */
+    border-bottom: 2px solid #3498db;
+    /* Relleno para que la línea se vea bien */
+    padding-bottom: 10px;
+}
+
+/* =========================================
+   4. FORMULARIOS (Inputs, Textareas, Selects)
+   ========================================= */
+
+label {
+    /* display: block hace que la etiqueta ocupe toda su línea, empujando el input hacia abajo */
+    display: block;
+
+    color: #2c3e50;
+    /* Margen inferior */
+    margin-bottom: 20px;
+    /* Tamaño de fuente */
+    font-size: 2em;
+    /* Sombra de texto para dar profundidad */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Aplicamos los mismos estilos a varios elementos separándolos con comas */
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    /* Que ocupen todo el ancho disponible de su contenedor */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: inherit;
+    /* Heredan la fuente del body */
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+    /* Permite al usuario hacer más grande la caja de texto solo hacia abajo */
+}
+
+/* =========================================
+   5. BOTONES
+   ========================================= */
+
+button {
+    display: block;
+    width: 100%;
+    background-color: #3498db;
+    /* Azul brillante */
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+    /* Cambia la flecha del mouse a una 'manita' */
+    transition: background-color 0.3s ease;
+    /* Animación suave al pasar el mouse */
+}
+
+
+/* La pseudo-clase :hover aplica estilos solo cuando el mouse está sobre el botón */
+button:hover {
+    background-color: #2980b9;
+    /* Un azul un poco más oscuro */
+}
+
+/* =========================================
+   6. SECCIÓN DE RESULTADOS Y EXTRAS
+   ========================================= */
+
+.resultado {
+    margin-top: 20px;
+    background-color: #e8f6f3;
+    /* Un fondo verde/azulado muy tenue */
+    padding: 15px;
+    border-left: 5px solid #1abc9c;
+    /* Una línea decorativa a la izquierda */
+    border-radius: 5px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #dcdde1;
+    margin: 40px 0;
+    /* Espacio grande arriba y abajo de la línea separadora */
+}
