@@ -2,7 +2,7 @@
    1. VARIABLES Y PREPARACIÓN DE LA INTERFAZ
    ===================================================================== */
 
-// Primero, "atrapamos" los elementos del HTML usando su ID para poder manipularlos.
+// elementos del HTML conectados con su ID para poder manipularlos
 const selectTipoCifrado = document.getElementById('tipo-cifrado');
 const contenedorDesplazamiento = document.getElementById('contenedor-desplazamiento');
 
@@ -28,8 +28,12 @@ selectTipoCifrado.addEventListener('change', function () {
 });
 
 /* =====================================================================
-   2. FUNCIONES MATEMÁTICAS DE CIFRADO (El corazón del programa)
+   2. FUNCIONES MATEMÁTICAS DE CIFRADO
    ===================================================================== */
+
+// Definimos nuestros alfabetos base globales
+const alfabetoMayus = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
+const alfabetoMinus = "abcdefghijklmnñopqrstuvwxyz";
 
 /**
  * Función para aplicar el Cifrado César
@@ -38,27 +42,26 @@ selectTipoCifrado.addEventListener('change', function () {
  */
 function algoritmoCesar(texto, desplazamiento) {
     let resultado = "";
-    // Aseguramos que el desplazamiento sea un número positivo entre 0 y 25 (módulo 26)
-    desplazamiento = (desplazamiento % 26 + 26) % 26;
+    desplazamiento = (desplazamiento % 27 + 27) % 27;
 
-    // Recorremos el texto letra por letra
     for (let i = 0; i < texto.length; i++) {
         let caracter = texto[i];
 
-        // Verificamos si es una letra del alfabeto inglés (ignora números y símbolos)
-        if (caracter.match(/[a-z]/i)) {
-            // Obtenemos el código ASCII de la letra
-            let codigoAscii = texto.charCodeAt(i);
+        if (alfabetoMayus.includes(caracter)) {
+            // Buscamos la posición actual de la letra 0 a 26
+            let posicionActual = alfabetoMayus.indexOf(caracter);
 
-            // Determinamos si es mayúscula (65 es 'A') o minúscula (97 es 'a')
-            let base = (codigoAscii >= 65 && codigoAscii <= 90) ? 65 : 97;
+            // Calculamos la nueva posición en el módulo 27
+            let nuevaPosicion = (posicionActual + desplazamiento) % 27;
 
-            // Fórmula matemática del César: (Letra - Base + Desplazamiento) mod 26 + Base
-            let nuevaLetra = String.fromCharCode(((codigoAscii - base + desplazamiento) % 26) + base);
-            console.log("Prueba: " + nuevaLetra);
-            resultado += nuevaLetra;
+            // Añadimos la nueva letra al resultado
+            resultado += alfabetoMayus[nuevaPosicion];
+            // Verificamos si es una letra Minúscula de nuestro alfabeto
+        } else if (alfabetoMinus.includes(caracter)) {
+            let posicionActual = alfabetoMinus.indexOf(caracter);
+            let nuevaPosicion = (posicionActual + desplazamiento) % 27;
+            resultado += alfabetoMinus[nuevaPosicion];
         } else {
-            // Si es un espacio, coma o número, lo dejamos igual
             resultado += caracter;
         }
     }
@@ -72,24 +75,33 @@ function algoritmoCesar(texto, desplazamiento) {
 function algoritmoAtbash(texto) {
     let resultado = "";
 
+    // Recorremos el texto letra por letra
     for (let i = 0; i < texto.length; i++) {
         let caracter = texto[i];
 
-        if (caracter.match(/[a-z]/i)) {
-            let codigoAscii = texto.charCodeAt(i);
-            let base = (codigoAscii >= 65 && codigoAscii <= 90) ? 65 : 97;
+        // Verificamos si es una letra MAYÚSCULA de nuestro alfabeto español
+        if (alfabetoMayus.includes(caracter)) {
+            // Buscamos su posición (0 a 26)
+            let posicionActual = alfabetoMayus.indexOf(caracter);
 
-            // Fórmula de Atbash: Invertir la posición en el alfabeto
-            // Ejemplo: 'A' (posición 0) se convierte en la posición 25 ('Z')
-            let nuevaLetra = String.fromCharCode(base + (25 - (codigoAscii - base)));
-            resultado += nuevaLetra;
+            // Fórmula Atbash para 27 letras: Índice máximo (26) menos la posición actual
+            let nuevaPosicion = 26 - posicionActual;
+
+            resultado += alfabetoMayus[nuevaPosicion];
+
+            // Verificamos si es una letra MINÚSCULA
+        } else if (alfabetoMinus.includes(caracter)) {
+            let posicionActual = alfabetoMinus.indexOf(caracter);
+            let nuevaPosicion = 26 - posicionActual;
+            resultado += alfabetoMinus[nuevaPosicion];
+
         } else {
+            // Si no está en nuestros alfabetos (números, espacios, signos), no lo tocamos
             resultado += caracter;
         }
     }
     return resultado;
 }
-
 /* =====================================================================
    3. EVENTOS DE LOS BOTONES (Conectar interfaz con matemáticas)
    ===================================================================== */
@@ -107,8 +119,7 @@ btnCifrar.addEventListener('click', function () {
 
     if (metodo === 'cesar') {
         // Obtenemos el número ingresado por el usuario y lo convertimos a entero (parseInt)
-        let desp = parseInt(inputDesplazamiento.value);
-        resultado = algoritmoCesar(texto, desp);
+        let desp = parseInt(inputDesplazamiento.value) || 0; resultado = algoritmoCesar(texto, desp);
     } else if (metodo === 'atbash') {
         resultado = algoritmoAtbash(texto);
     }
@@ -129,20 +140,20 @@ btnDescifrar.addEventListener('click', function () {
     // Limpiamos la caja de resultados antes de imprimir la nueva lista
     salidaDescifrado.innerHTML = "";
 
-    // 1. Probamos con Atbash (solo hay 1 resultado posible)
+    // 1. Probamos con Atbash
     let pruebaAtbash = algoritmoAtbash(textoSecreto);
     salidaDescifrado.innerHTML += `<strong>Atbash:</strong> ${pruebaAtbash} <br><br>`;
 
-    // 2. Probamos todas las 25 combinaciones posibles del Cifrado César
+    // 2. Probamos todas las combinaciones posibles del Cifrado César (Ahora son 26 claves)
     salidaDescifrado.innerHTML += `<strong>César (Probando todas las claves):</strong><br>`;
 
-    // Un ciclo del 1 al 25
-    for (let i = 1; i <= 25; i++) {
-        // Para descifrar César, simplemente desplazamos hacia adelante el resto del alfabeto
+    // Un ciclo del 1 al 26 (ya que el módulo es 27)
+    for (let i = 1; i <= 26; i++) {
+        // Desplazamos hacia adelante para encontrar el texto original
         let pruebaCesar = algoritmoCesar(textoSecreto, i);
 
-        // Creamos un párrafo para cada intento y lo agregamos al HTML
-        salidaDescifrado.innerHTML += `<em>Clave ${26 - i}:</em> ${pruebaCesar} <br>`;
+        // Ajustamos la etiqueta para que muestre la clave correcta (27 - i)
+        salidaDescifrado.innerHTML += `<em>Clave ${27 - i}:</em> ${pruebaCesar} <br>`;
     }
 
     salidaDescifrado.innerHTML += `<br><small><strong>Instrucción:</strong> Lee la lista de arriba. La oración que esté en español claro te indicará qué método y qué clave se usó.</small>`;
