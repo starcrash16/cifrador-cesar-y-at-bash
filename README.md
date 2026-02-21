@@ -6,11 +6,12 @@ Una aplicación web Frontend interactiva diseñada para aplicar, evaluar y vulne
 
 
 **Demo en vivo:** [Despliegue en Netlify](https://cifrado-y-descifrado-renemed-isc.netlify.app/)
+
 **Repositorio:** [Código fuente en GitHub](https://github.com/starcrash16/cifrador-cesar-y-at-bash)
 
 ---
 
-## 🚀 Características Principales
+## Características Principales
 
 * **Definición Dinámica del Módulo ($m$):** El sistema calcula automáticamente la longitud del conjunto de caracteres ingresado por el usuario, estableciendo este valor como el módulo para las operaciones aritméticas en anillo ($\mathbb{Z}_{m}$).
 * **Sanitización Histórica Estricta:** Implementa una limpieza automática del texto plano. Cualquier carácter (como espacios o signos de puntuación) que no pertenezca al alfabeto definido por el usuario es ignorado y eliminado del criptograma. Esto previene vulnerabilidades de criptoanálisis basadas en la detección de la longitud de las palabras.
