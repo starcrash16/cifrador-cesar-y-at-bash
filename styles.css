@@ -2,23 +2,17 @@
    1. ESTILOS BASE Y RESETEO
    ========================================= */
 
-/* El asterisco (*) aplica a TODOS los elementos de la página */
 * {
-    /* box-sizing: border-box hace que el 'padding' y el 'border' se incluyan 
-       en el ancho total del elemento. Evita que las cosas se desborden. */
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 body {
-    /*Fuente sin patines*/
+    /* Fuente limpia y moderna */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /*Color de fondo*/
     background-color: #f4f7f6;
-    /*Color de texto*/
     color: #333;
-    /*Alineación del texto*/
     line-height: 1.6;
     padding: 20px;
 }
@@ -28,17 +22,11 @@ body {
    ========================================= */
 
 main {
-    /* Ancho máximo del contenido */
     max-width: 800px;
-    /* Margen automático a los lados para centrarlo */
     margin: 0 auto;
-    /* Fondo blanco */
     background-color: #fff;
-    /* Sombra suave para que resalte */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    /* Bordes redondeados */
     border-radius: 10px;
-    /* Relleno interno */
     padding: 30px;
 }
 
@@ -47,27 +35,20 @@ main {
    ========================================= */
 
 h1 {
-    /* Color */
     color: #2c3e50;
-    /* Margen inferior */
     margin-bottom: 20px;
-    /* Tamaño de fuente */
     font-size: 2.5em;
-    /* Sombra de texto para dar profundidad */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* Centramos el título principal */
 }
 
 h2 {
-    /* Color */
     color: #34495e;
-    /* Separación del título */
     margin-top: 30px;
     margin-bottom: 15px;
-    /* Tamaño de fuente */
     font-size: 1.8em;
-    /* Línea decorativa debajo del título */
     border-bottom: 2px solid #3498db;
-    /* Relleno para que la línea se vea bien */
     padding-bottom: 10px;
 }
 
@@ -76,35 +57,72 @@ h2 {
    ========================================= */
 
 label {
-    /* display: block hace que la etiqueta ocupe toda su línea, empujando el input hacia abajo */
     display: block;
-
     color: #2c3e50;
-    /* Margen inferior */
-    margin-bottom: 20px;
-    /* Tamaño de fuente */
-    font-size: 2em;
-    /* Sombra de texto para dar profundidad */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    /* Mejoramos la legibilidad en lugar de usar text-shadow */
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    /* Tamaño corregido, antes era gigante (2em) */
 }
 
-/* Aplicamos los mismos estilos a varios elementos separándolos con comas */
+/* Aplicamos los mismos estilos a todos los inputs, INCLUYENDO text */
 input[type="number"],
+input[type="text"],
 select,
 textarea {
     width: 100%;
-    /* Que ocupen todo el ancho disponible de su contenedor */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-family: inherit;
-    /* Heredan la fuente del body */
     font-size: 16px;
 }
 
 textarea {
     resize: vertical;
-    /* Permite al usuario hacer más grande la caja de texto solo hacia abajo */
+}
+
+/* =========================================
+   NUEVO: CONFIGURACIÓN GLOBAL (ALFABETO)
+   ========================================= */
+
+.configuracion-global {
+    background-color: #e8f0fe;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border-left: 5px solid #3498db;
+    margin-top: 10px;
+}
+
+.configuracion-global label {
+    margin-top: 0;
+    font-size: 1.2em;
+}
+
+.configuracion-global p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+/* Estilo especial exclusivo para la caja del alfabeto */
+#alfabeto {
+    font-family: monospace;
+    /* Fuente estilo código para ver bien las letras */
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: #2c3e50;
+    border: 2px solid #bdc3c7;
+    /* Ya no necesita width ni padding porque los hereda de input[type="text"] */
+}
+
+#alfabeto:focus {
+    border-color: #3498db;
+    outline: none;
 }
 
 /* =========================================
@@ -115,7 +133,6 @@ button {
     display: block;
     width: 100%;
     background-color: #3498db;
-    /* Azul brillante */
     color: white;
     border: none;
     padding: 12px;
@@ -124,16 +141,11 @@ button {
     border-radius: 5px;
     margin-top: 20px;
     cursor: pointer;
-    /* Cambia la flecha del mouse a una 'manita' */
     transition: background-color 0.3s ease;
-    /* Animación suave al pasar el mouse */
 }
 
-
-/* La pseudo-clase :hover aplica estilos solo cuando el mouse está sobre el botón */
 button:hover {
     background-color: #2980b9;
-    /* Un azul un poco más oscuro */
 }
 
 /* =========================================
@@ -143,10 +155,8 @@ button:hover {
 .resultado {
     margin-top: 20px;
     background-color: #e8f6f3;
-    /* Un fondo verde/azulado muy tenue */
     padding: 15px;
     border-left: 5px solid #1abc9c;
-    /* Una línea decorativa a la izquierda */
     border-radius: 5px;
 }
 
@@ -155,5 +165,4 @@ hr {
     height: 1px;
     background-color: #dcdde1;
     margin: 40px 0;
-    /* Espacio grande arriba y abajo de la línea separadora */
 }

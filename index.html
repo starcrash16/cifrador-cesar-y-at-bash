@@ -4,16 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Herramienta de Cifrado - Ciberseguridad</title>
+    <title>Herramienta de Cifrado - Ciberseguridad </title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <main>
-        <h1>Sistema de Cifrado y Criptoanálisis</h1>
+        <h1>Sistema de Cifrado y Criptoanálisis<br> Realizado por René De Anda ISC B</h1>
 
         <section id="seccion-cifrar">
             <h2>Cifrar Mensaje</h2>
+
+            <label for="alfabeto">Alfabeto / Módulo a utilizar:</label>
+            <div class="configuracion-global">
+                <p>Escribe todos los caracteres permitidos. La longitud de este texto será el módulo matemático.</p>
+                <input type="text" id="alfabeto" value="ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789" required>
+            </div>
+
 
             <label for="tipo-cifrado">1. Selecciona el tipo de cifrado:</label>
             <select id="tipo-cifrado">
